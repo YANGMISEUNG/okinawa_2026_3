@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 오키나와 3박 4일 가족 여행</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 pb-20 md:pb-10 min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-teal-600 text-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold flex items-center gap-2">
+                    <i data-lucide="palmtree" class="w-6 h-6"></i>
+                    오키나와 가족 여행
+                </h1>
+                <p class="text-xs text-teal-100">2026.10.30(금) ~ 11.02(월) | 3박 4일 (5인)</p>
+            </div>
+            <span class="bg-teal-700 text-teal-100 text-xs px-2.5 py-1 rounded-full font-medium border border-teal-500">
+                7인승 렌터카
+            </span>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="max-w-4xl mx-auto px-2 flex bg-teal-700/50 text-sm font-medium border-t border-teal-500/30">
+            <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex-1 py-2.5 text-center transition flex items-center justify-center gap-1.5 border-b-2 border-white font-bold text-white">
+                <i data-lucide="map-pin" class="w-4 h-4"></i> 여행계획
+            </button>
+            <button onclick="switchTab('checklist')" id="tab-checklist" class="flex-1 py-2.5 text-center transition flex items-center justify-center gap-1.5 text-teal-200 border-b-2 border-transparent">
+                <i data-lucide="check-square" class="w-4 h-4"></i> 체크리스트
+            </button>
+            <button onclick="switchTab('budget')" id="tab-budget" class="flex-1 py-2.5 text-center transition flex items-center justify-center gap-1.5 text-teal-200 border-b-2 border-transparent">
+                <i data-lucide="wallet" class="w-4 h-4"></i> 예산 & 영수증
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto p-4">
+
+        <!-- ================= PAGE 1: ITINERARY ================= -->
+        <section id="page-itinerary" class="space-y-6">
+
+            <!-- Travel Alert Banner -->
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm text-sm text-amber-900">
+                <div class="flex items-center gap-2 font-bold mb-1">
+                    <i data-lucide="info" class="w-4 h-4 text-amber-600"></i>
+                    여행 일정 참고 정보
+                </div>
+                <p class="text-xs leading-relaxed text-amber-800">
+                    60대 부부, 30대 부부, 3세 아이 포함 총 5명 일정입니다. 식당 및 카페는 <strong>구글 평점 4.0 이상 & Break Time 없이 연속 영업</strong>하는 곳 위주로 추천되었습니다.
+                </p>
+            </div>
+
+            <!-- Essential Maps & Quick Search Buttons -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                    <i data-lucide="navigation" class="w-4 h-4 text-teal-600"></i>
+                    주요 편의시설 빠르게 찾기 (@Google Maps)
+                </h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                    <a href="https://www.google.com/maps/search/%ED%8C%A8%EB%B0%80%EB%A6%AC%EB%A7%88%ED%8A%B8+Lawson+Okinawa" target="_blank" class="flex items-center justify-center gap-1.5 p-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 rounded-lg transition font-medium border border-slate-200">
+                        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-emerald-600"></i> 편의점 (로손/패미마)
+                    </a>
+                    <a href="https://www.google.com/maps/search/Pharmacy+Okinawa" target="_blank" class="flex items-center justify-center gap-1.5 p-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 rounded-lg transition font-medium border border-slate-200">
+                        <i data-lucide="pill" class="w-3.5 h-3.5 text-rose-500"></i> 주위 약국
+                    </a>
+                    <a href="https://www.google.com/maps/search/Don+Quijote+Okinawa" target="_blank" class="flex items-center justify-center gap-1.5 p-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 rounded-lg transition font-medium border border-slate-200">
+                        <i data-lucide="store" class="w-3.5 h-3.5 text-amber-600"></i> 돈키호테 매장
+                    </a>
+                    <a href="https://www.google.com/maps/search/public+toilet+Okinawa" target="_blank" class="flex items-center justify-center gap-1.5 p-2 bg-slate-100 hover:bg-teal-50 hover:text-teal-700 rounded-lg transition font-medium border border-slate-200">
+                        <i data-lucide="bath" class="w-3.5 h-3.5 text-blue-500"></i> 공공 화장실
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 1 -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-teal-600 to-teal-700 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <span class="text-xs uppercase tracking-wide bg-teal-800 text-teal-200 px-2 py-0.5 rounded font-bold">Day 1</span>
+                        <h2 class="text-lg font-bold mt-1">10월 30일 (금) - 출국 및 중부 이동</h2>
+                    </div>
+                    <div class="text-right text-xs opacity-90">
+                        <div>숙소: 오키나와 카리유시 엑시즈</div>
+                    </div>
+                </div>
+
+                <div class="p-4 divide-y divide-slate-100">
+                    <!-- Schedule Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">06:00</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">자택 출발 ➔ 인천공항 이동</p>
+                            <p class="text-xs text-slate-500 mt-0.5">인천공항 T1 도착 (약 08:00 예상) 및 유심 수령</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">08:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">인천공항 라운지 이용 & 탑승 수속</p>
+                            <p class="text-xs text-slate-500 mt-0.5">마티나/아시아나 라운지 조식 이용 및 휴식</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">11:25 - 14:00</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">이스타항공 (ZE631) 비행</p>
+                            <p class="text-xs text-slate-500 mt-0.5">인천 출발 ➔ 나하 공항 도착 (약 2시간 35분 소요)</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">14:30 - 15:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">렌터카 픽업 (7인승 미니밴 + 카시트)</p>
+                            <p class="text-xs text-slate-500 mt-0.5">공항 셔틀 탑승 ➔ 렌터카 인수 및 아동용 카시트 체크</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">16:30</div>
+                        <div class="flex-1 text-sm space-y-2">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-teal-600"></i> 아메리칸 빌리지
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=American+Village+Okinawa" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">해변 산책로, 쇼핑몰, 이국적인 석양 관람 (유모차 이동 용이)</p>
+                        </div>
+                    </div>
+
+                    <!-- Food & Cafe Recommendation -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">저녁/카페</div>
+                        <div class="flex-1 text-sm space-y-3">
+                            <div>
+                                <p class="font-bold text-slate-800 text-xs text-amber-700">추천 식당 (4.0+ / No Break Time)</p>
+                                <ul class="text-xs text-slate-700 mt-1 space-y-1">
+                                    <li class="flex justify-between items-center">
+                                        <span>1. 구루메 회전초밥 (선셋비치 인근) ★4.1</span>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Gourmet+Kaiten+Sushi+American+Village" target="_blank" class="text-teal-600 text-xs">지도</a>
+                                    </li>
+                                    <li class="flex justify-between items-center">
+                                        <span>2. 포크 타마고 오니기리 (아메리칸빌리지점) ★4.3</span>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Pork+Tamago+Onigiri+American+Village" target="_blank" class="text-teal-600 text-xs">지도</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-800 text-xs text-teal-700">추천 카페</p>
+                                <p class="text-xs text-slate-600">지바고 커피 로스터스 (Zhyvago Coffee) ★4.5 - 바다 조망</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-teal-700 shrink-0">19:30</div>
+                        <div class="flex-1 text-sm">
+                            <div class="flex justify-between items-center">
+                                <p class="font-bold text-slate-800">체크인: 오키나와 카리유시 리조트 엑시즈 온나</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Okinawa+Kariyushi+Resort+EXES+Onna" target="_blank" class="text-xs text-teal-600">지도</a>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-0.5">조식 포함 패밀리 럭셔리 리조트. 아이와 부모님 휴식</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-teal-600 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <span class="text-xs uppercase tracking-wide bg-blue-800 text-blue-200 px-2 py-0.5 rounded font-bold">Day 2</span>
+                        <h2 class="text-lg font-bold mt-1">10월 31일 (토) - 북부 핵심 투어</h2>
+                    </div>
+                    <div class="text-right text-xs opacity-90">
+                        <div>숙소: 오키나와 카리유시 엑시즈</div>
+                    </div>
+                </div>
+
+                <div class="p-4 divide-y divide-slate-100">
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-blue-700 shrink-0">08:00 - 09:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">호텔 조식 뷔페 이용</p>
+                            <p class="text-xs text-slate-500 mt-0.5">엑시즈 온나 프리미엄 조식 (아동 식사의자 구비)</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-blue-700 shrink-0">10:00 - 11:30</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-blue-600"></i> 나고 파인애플 파크
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Nago+Pineapple+Park" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">자동 카트 탑승 (3세 아이 매우 좋아함), 파인애플 시식</p>
+                            <span class="inline-block bg-teal-50 text-teal-700 text-[10px] px-2 py-0.5 rounded border border-teal-200">펀패스 입장 가능</span>
+                        </div>
+                    </div>
+
+                    <!-- Lunch Recommendation -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">점심 식사</div>
+                        <div class="flex-1 text-sm space-y-2">
+                            <p class="font-bold text-slate-800 text-xs text-amber-700">추천 식당 (4.0+ / 브레이크 타임 없음)</p>
+                            <ul class="text-xs text-slate-700 space-y-1">
+                                <li class="flex justify-between items-center">
+                                    <span>1. 백년아구 카이센야 (아구돼지 요리) ★4.2</span>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Centennial+Agu+Pork+Kaisenya+Nago" target="_blank" class="text-teal-600">지도</a>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span>2. 플라퍼스 버거 (키즈 친화 수제버거) ★4.4</span>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Captain+Kangaroo+Nago" target="_blank" class="text-teal-600">지도</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-blue-700 shrink-0">13:30 - 16:30</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-blue-600"></i> 오키나와 추라우미 수족관
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Okinawa+Churaumi+Aquarium" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">고래상어, 돌고래 쇼(오키짱 극장), 실내 유모차 대여 무료</p>
+                            <span class="inline-block bg-teal-50 text-teal-700 text-[10px] px-2 py-0.5 rounded border border-teal-200">펀패스 입장 가능</span>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-blue-700 shrink-0">17:30</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-blue-600"></i> 만좌모
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Manzamo+Okinawa" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">코끼리 코 모양 절벽 산책로, 일몰 감상</p>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">저녁 식사</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <p class="font-bold text-slate-800 text-xs text-amber-700">온나손 인근 추천 (연속 영업)</p>
+                            <div class="flex justify-between items-center text-xs text-slate-700">
+                                <span>류큐노 우시 (아구돼지/와규 스테이크) ★4.4</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Ryukyu+no+Ushi+Onna" target="_blank" class="text-teal-600">지도</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-600 to-teal-600 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <span class="text-xs uppercase tracking-wide bg-emerald-800 text-emerald-200 px-2 py-0.5 rounded font-bold">Day 3</span>
+                        <h2 class="text-lg font-bold mt-1">11월 01일 (일) - 남부 문화 & 시내 이동</h2>
+                    </div>
+                    <div class="text-right text-xs opacity-90">
+                        <div>숙소: Hotel Azat Naha</div>
+                    </div>
+                </div>
+
+                <div class="p-4 divide-y divide-slate-100">
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-emerald-700 shrink-0">08:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">조식 후 리조트 체크아웃 & 남부 이동</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-emerald-700 shrink-0">10:00 - 12:30</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i> 오키나와 월드
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Okinawa+World" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">교쿠센동 동굴 탐험, 에이서 전통 공연, 왕국촌 산책</p>
+                            <span class="inline-block bg-teal-50 text-teal-700 text-[10px] px-2 py-0.5 rounded border border-teal-200">펀패스 입장 가능</span>
+                        </div>
+                    </div>
+
+                    <!-- Lunch Recommendation -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">점심 식사</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <p class="font-bold text-slate-800 text-xs text-amber-700">남부 추천 (4.0+ / 연속 영업)</p>
+                            <div class="flex justify-between items-center text-xs text-slate-700">
+                                <span>부쿠부쿠 차 & 류큐 소바 (Cave Cafe 인근) ★4.2</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Okinawa+World+Restaurant" target="_blank" class="text-teal-600">지도</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-emerald-700 shrink-0">14:00 - 16:00</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i> 슈리성 공원
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Shuri+Castle+Okinawa" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">세계문화유산, 성곽 산책 및 나하시 정경 감상</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-emerald-700 shrink-0">16:30</div>
+                        <div class="flex-1 text-sm">
+                            <div class="flex justify-between items-center">
+                                <p class="font-bold text-slate-800">Hotel Azat Naha 체크인</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Azat+Naha" target="_blank" class="text-xs text-teal-600">지도</a>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-0.5">안자토역 직결, 국제거리 도보 5분 위치</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot Item -->
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-emerald-700 shrink-0">17:30 - 20:00</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600"></i> 국제거리 쇼핑 & 탐방
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Kokusai+Dori+Naha" target="_blank" class="text-xs text-teal-600 hover:underline font-medium flex items-center gap-1">
+                                    @Google Maps <i data-lucide="external-link" class="w-3 h-3"></i>
+                                </a>
+                            </div>
+                            <p class="text-xs text-slate-600">돈키호테 국제거리점, 기념품샵, 평화시장 구경</p>
+                        </div>
+                    </div>
+
+                    <!-- Dinner -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">저녁/간식</div>
+                        <div class="flex-1 text-sm space-y-2">
+                            <p class="font-bold text-slate-800 text-xs text-amber-700">국제거리 맛집 (4.0+ / 브레이크 타임 없음)</p>
+                            <ul class="text-xs text-slate-700 space-y-1">
+                                <li class="flex justify-between items-center">
+                                    <span>1. 단보 라멘 (국제거리점 - 돈코츠) ★4.1</span>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Danbo+Ramen+Kokusai+Dori" target="_blank" class="text-teal-600">지도</a>
+                                </li>
+                                <li class="flex justify-between items-center">
+                                    <span>2. 샘스 세일러 Inn (철판 스테이크) ★4.2</span>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Sams+Sailor+Inn+Kokusai+Dori" target="_blank" class="text-teal-600">지도</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-gradient-to-r from-purple-600 to-teal-600 p-4 text-white flex justify-between items-center">
+                    <div>
+                        <span class="text-xs uppercase tracking-wide bg-purple-800 text-purple-200 px-2 py-0.5 rounded font-bold">Day 4</span>
+                        <h2 class="text-lg font-bold mt-1">11월 02일 (월) - 쇼핑 & 귀국</h2>
+                    </div>
+                    <div class="text-right text-xs opacity-90">
+                        <div>귀국편: 아시아나 18:45</div>
+                    </div>
+                </div>
+
+                <div class="p-4 divide-y divide-slate-100">
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-purple-700 shrink-0">08:00 - 09:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">Hotel Azat 조식 후 체크아웃</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-purple-700 shrink-0">10:00 - 12:30</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <div class="flex items-center justify-between">
+                                <p class="font-bold text-slate-800 flex items-center gap-1">
+                                    <i data-lucide="shopping-cart" class="w-4 h-4 text-purple-600"></i> 이온몰 라이카무 또는 아울렛 Mall Ashibinaa
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Okinawa+Outlet+Mall+Ashibinaa" target="_blank" class="text-xs text-teal-600">지도</a>
+                            </div>
+                            <p class="text-xs text-slate-600">마지막 쇼핑 및 실내 아이 놀이시설 이용</p>
+                        </div>
+                    </div>
+
+                    <!-- Lunch Recommendation -->
+                    <div class="py-3 flex gap-3 bg-slate-50 -mx-4 px-4 my-1">
+                        <div class="w-16 text-xs font-semibold text-amber-600 shrink-0">점심 식사</div>
+                        <div class="flex-1 text-sm space-y-1">
+                            <p class="font-bold text-slate-800 text-xs text-amber-700">공항 근처 추천</p>
+                            <div class="flex justify-between items-center text-xs text-slate-700">
+                                <span>우미카지 테라스 (A&W 버거 또는 소바) ★4.3</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Senagajima+Umikaji+Terrace" target="_blank" class="text-teal-600">지도</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-purple-700 shrink-0">15:30</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">렌터카 반납</p>
+                            <p class="text-xs text-slate-500 mt-0.5">주유 완납 후 렌터카 영업소 반납 ➔ 공항 셔틀 이동</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-purple-700 shrink-0">16:30 - 18:45</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">나하 공항 도착 & 라운지 이용</p>
+                            <p class="text-xs text-slate-500 mt-0.5">출국 수속 후 나하 공항 라운지(Lounge Hana) 휴식</p>
+                        </div>
+                    </div>
+
+                    <div class="py-3 flex gap-3">
+                        <div class="w-16 text-xs font-semibold text-purple-700 shrink-0">18:45</div>
+                        <div class="flex-1 text-sm">
+                            <p class="font-bold text-slate-800">아시아나항공 (OZ171) 출발 ➔ 인천 도착 (21:15)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CUSTOM TOILET ADD & SEARCH SECTION -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i data-lucide="map-pin-plus" class="w-4 h-4 text-teal-600"></i>
+                        내 맞춤 공공 화장실 추가/관리
+                    </h3>
+                    <span class="text-xs text-slate-400">브라우저 저장</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                    <input type="text" id="toiletName" placeholder="화장실 이름 (예: 만좌모 휴게소 화장실)" class="border rounded p-2 text-xs focus:outline-teal-500">
+                    <input type="text" id="toiletLocation" placeholder="위치/메모 (예: 1층 에스컬레이터 옆)" class="border rounded p-2 text-xs focus:outline-teal-500">
+                </div>
+                <button onclick="addToilet()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs py-2 rounded transition flex items-center justify-center gap-1">
+                    <i data-lucide="plus" class="w-4 h-4"></i> 신규 화장실 등록
+                </button>
+
+                <!-- Toilet List -->
+                <div class="mt-4">
+                    <h4 class="text-xs font-bold text-slate-600 mb-2">저장된 화장실 목록</h4>
+                    <div id="toiletList" class="space-y-2 text-xs">
+                        <!-- Dynamic items -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PAGE 2: CHECKLIST ================= -->
+        <section id="page-checklist" class="hidden space-y-6">
+
+            <!-- Visit Japan Web Card -->
+            <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-5 rounded-xl shadow-md">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="qr-code" class="w-6 h-6 text-indigo-400"></i>
+                        <h3 class="font-bold text-base">Visit Japan Web (입국/세관 QR)</h3>
+                    </div>
+                    <span class="bg-indigo-500/30 text-indigo-200 text-xs px-2.5 py-1 rounded-full border border-indigo-400/30">필수 작성</span>
+                </div>
+                <p class="text-xs text-indigo-200 mb-4 leading-relaxed">
+                    입국심사(Disembarkation Card)와 세관신고(Customs Declaration)를 온라인으로 미리 등록하고 통합 QR코드를 발급받아 빠르고 편리하게 입국하세요.
+                </p>
+                <a href="https://vjw-lp.digital.go.jp/ko/" target="_blank" class="inline-flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition w-full sm:w-auto">
+                    공식 웹사이트 접속 (한국어 지원) <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+
+            <!-- Key Preparation Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 space-y-2">
+                    <div class="flex items-center gap-2 text-teal-700 font-bold text-sm">
+                        <i data-lucide="wifi" class="w-4 h-4"></i> 공항 유심 (USIM/eSIM)
+                    </div>
+                    <p class="text-xs text-slate-600">4일권 이용: 15,900원 × 4개 = <strong>63,600원</strong></p>
+                    <p class="text-xs text-slate-400">인천공항 수령 또는 eSIM 사전 설치 확인</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 space-y-2">
+                    <div class="flex items-center gap-2 text-teal-700 font-bold text-sm">
+                        <i data-lucide="ticket" class="w-4 h-4"></i> 오키나와 펀패스 (츄라우미)
+                    </div>
+                    <p class="text-xs text-slate-600">주요 관람지 포함: 츄라우미 수족관 + 파인애플 파크 + 오키나와 월드 등</p>
+                    <p class="text-xs text-slate-400">QR코드 미리 폰에 저장 권장</p>
+                </div>
+            </div>
+
+            <!-- Interactive Checklist -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-slate-800 text-sm mb-3 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-600"></i>
+                    여행 준비물 체크리스트
+                </h3>
+                <div class="space-y-2 text-xs" id="checklistItems">
+                    <!-- Dynamic rendering by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PAGE 3: BUDGET & RECEIPTS ================= -->
+        <section id="page-budget" class="hidden space-y-6">
+
+            <!-- Budget Summary Box -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 space-y-4">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i data-lucide="calculator" class="w-4 h-4 text-teal-600"></i>
+                    여행 예산 및 지출 내역
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-[11px] text-slate-500 font-medium">유심 (4개)</span>
+                        <p class="text-sm font-bold text-slate-800 mt-0.5">63,600원</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-[11px] text-slate-500 font-medium">숙소 (3박)</span>
+                        <p class="text-sm font-bold text-slate-800 mt-0.5">예약 완료</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        <span class="text-[11px] text-slate-500 font-medium">렌터카 (7인승)</span>
+                        <p class="text-sm font-bold text-slate-800 mt-0.5">예약 완료</p>
+                    </div>
+                </div>
+
+                <!-- Add Expense Form -->
+                <div class="border-t pt-4 space-y-2">
+                    <span class="text-xs font-bold text-slate-700">지출 내역 추가</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <input type="text" id="expDesc" placeholder="내용 (예: 편의점, 주유비)" class="border rounded p-2 text-xs focus:outline-teal-500">
+                        <input type="number" id="expAmount" placeholder="금액 (엔 ¥ 또는 원 ₩)" class="border rounded p-2 text-xs focus:outline-teal-500">
+                        <select id="expCurr" class="border rounded p-2 text-xs bg-white focus:outline-teal-500">
+                            <option value="엔">엔 (JPY ¥)</option>
+                            <option value="원">원 (KRW ₩)</option>
+                        </select>
+                    </div>
+                    <button onclick="addExpense()" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium text-xs py-2 rounded transition">
+                        지출 기록 저장
+                    </button>
+                </div>
+
+                <!-- Expense Table -->
+                <div class="mt-4">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="border-b text-slate-400 font-medium">
+                                <th class="py-2">내용</th>
+                                <th class="py-2 text-right">금액</th>
+                                <th class="py-2 text-center">삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expenseList" class="divide-y divide-slate-100">
+                            <!-- Dynamic -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Receipt & Photo Upload Section -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i data-lucide="camera" class="w-4 h-4 text-teal-600"></i>
+                        영수증 및 추억 사진 저장
+                    </h3>
+                    <span class="text-xs text-slate-400">로컬 기기 저장</span>
+                </div>
+
+                <div class="border-2 border-dashed border-slate-200 rounded-lg p-4 text-center hover:bg-slate-50 transition cursor-pointer relative">
+                    <input type="file" id="imageInput" accept="image/*" multiple onchange="handleImageUpload(event)" class="absolute inset-0 opacity-0 cursor-pointer">
+                    <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-400 mx-auto mb-1"></i>
+                    <p class="text-xs text-slate-600 font-medium">영수증 또는 사진을 업로드하세요</p>
+                    <p class="text-[10px] text-slate-400 mt-0.5">클릭하여 파일 선택 (여러 장 가능)</p>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div id="photoGallery" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                    <!-- Dynamic Photos -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        // Tab Switcher Logic
+        function switchTab(tabName) {
+            const tabs = ['itinerary', 'checklist', 'budget'];
+            tabs.forEach(t => {
+                document.getElementById(`page-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`tab-${t}`);
+                btn.classList.remove('border-white', 'font-bold', 'text-white');
+                btn.classList.add('border-transparent', 'text-teal-200');
+            });
+
+            document.getElementById(`page-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            activeBtn.classList.add('border-white', 'font-bold', 'text-white');
+            activeBtn.classList.remove('border-transparent', 'text-teal-200');
+        }
+
+        // --- Toilet Manager Logic ---
+        let toilets = JSON.parse(localStorage.getItem('ok_toilets') || '[]');
+
+        function renderToilets() {
+            const list = document.getElementById('toiletList');
+            if (toilets.length === 0) {
+                list.innerHTML = `<p class="text-slate-400 italic text-[11px]">저장된 추가 화장실이 없습니다.</p>`;
+                return;
+            }
+            list.innerHTML = toilets.map((t, index) => `
+                <div class="flex items-center justify-between bg-slate-50 p-2 rounded border border-slate-200">
+                    <div>
+                        <p class="font-bold text-slate-800">${t.name}</p>
+                        <p class="text-[10px] text-slate-500">${t.location}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.name)}" target="_blank" class="text-teal-600 hover:underline text-[11px]">지도</a>
+                        <button onclick="deleteToilet(${index})" class="text-rose-500 hover:text-rose-700">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function addToilet() {
+            const name = document.getElementById('toiletName').value.trim();
+            const location = document.getElementById('toiletLocation').value.trim();
+            if (!name) return;
+            toilets.push({ name, location });
+            localStorage.setItem('ok_toilets', JSON.stringify(toilets));
+            document.getElementById('toiletName').value = '';
+            document.getElementById('toiletLocation').value = '';
+            renderToilets();
+        }
+
+        function deleteToilet(index) {
+            toilets.splice(index, 1);
+            localStorage.setItem('ok_toilets', JSON.stringify(toilets));
+            renderToilets();
+        }
+
+        // --- Checklist Logic ---
+        const defaultChecklist = [
+            { id: 1, text: '여권 (유효기간 6개월 이상 남음 확인)', done: true },
+            { id: 2, text: 'Visit Japan Web 등록 및 QR 저장', done: false },
+            { id: 3, text: '국제운전면허증 + 한국 운전면허증 + 여권', done: true },
+            { id: 4, text: '유심/eSIM 확인 (4일권 4개)', done: false },
+            { id: 5, text: '오키나와 펀패스 바우처 저장', done: false },
+            { id: 6, text: '3세 아이용 기저귀, 상비약, 유모차', done: false },
+            { id: 7, text: '부모님 상비약 및 엔화 환전', done: false }
+        ];
+
+        let checklist = JSON.parse(localStorage.getItem('ok_checklist') || JSON.stringify(defaultChecklist));
+
+        function renderChecklist() {
+            const container = document.getElementById('checklistItems');
+            container.innerHTML = checklist.map((item, index) => `
+                <label class="flex items-center gap-2 p-2 rounded hover:bg-slate-50 cursor-pointer border border-transparent hover:border-slate-200">
+                    <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleChecklist(${index})" class="rounded text-teal-600 focus:ring-teal-500 w-4 h-4">
+                    <span class="${item.done ? 'line-through text-slate-400' : 'text-slate-700'}">${item.text}</span>
+                </label>
+            `).join('');
+        }
+
+        function toggleChecklist(index) {
+            checklist[index].done = !checklist[index].done;
+            localStorage.setItem('ok_checklist', JSON.stringify(checklist));
+            renderChecklist();
+        }
+
+        // --- Expenses Logic ---
+        let expenses = JSON.parse(localStorage.getItem('ok_expenses') || '[]');
+
+        function renderExpenses() {
+            const list = document.getElementById('expenseList');
+            if (expenses.length === 0) {
+                list.innerHTML = `<tr><td colspan="3" class="py-3 text-center text-slate-400 italic">등록된 지출이 없습니다.</td></tr>`;
+                return;
+            }
+            list.innerHTML = expenses.map((e, index) => `
+                <tr class="border-b border-slate-50">
+                    <td class="py-2 text-slate-800">${e.desc}</td>
+                    <td class="py-2 text-right font-medium text-slate-700">${Number(e.amount).toLocaleString()} ${e.curr}</td>
+                    <td class="py-2 text-center">
+                        <button onclick="deleteExpense(${index})" class="text-slate-400 hover:text-rose-500">
+                            <i data-lucide="x" class="w-3.5 h-3.5 mx-auto"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function addExpense() {
+            const desc = document.getElementById('expDesc').value.trim();
+            const amount = document.getElementById('expAmount').value;
+            const curr = document.getElementById('expCurr').value;
+            if (!desc || !amount) return;
+
+            expenses.push({ desc, amount, curr });
+            localStorage.setItem('ok_expenses', JSON.stringify(expenses));
+            document.getElementById('expDesc').value = '';
+            document.getElementById('expAmount').value = '';
+            renderExpenses();
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            localStorage.setItem('ok_expenses', JSON.stringify(expenses));
+            renderExpenses();
+        }
+
+        // --- Photo Storage Logic ---
+        let photos = JSON.parse(localStorage.getItem('ok_photos') || '[]');
+
+        function renderPhotos() {
+            const gallery = document.getElementById('photoGallery');
+            if (photos.length === 0) {
+                gallery.innerHTML = `<p class="col-span-full text-center text-slate-400 text-xs italic py-2">저장된 이미지나 영수증이 없습니다.</p>`;
+                return;
+            }
+            gallery.innerHTML = photos.map((p, index) => `
+                <div class="relative group rounded-lg overflow-hidden border border-slate-200 bg-slate-100 aspect-square">
+                    <img src="${p}" class="w-full h-full object-cover">
+                    <button onclick="deletePhoto(${index})" class="absolute top-1 right-1 bg-black/60 text-white rounded-full p-1 hover:bg-rose-600 transition">
+                        <i data-lucide="trash-2" class="w-3 h-3"></i>
+                    </button>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function handleImageUpload(e) {
+            const files = e.target.files;
+            if (!files) return;
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    photos.push(evt.target.result);
+                    localStorage.setItem('ok_photos', JSON.stringify(photos));
+                    renderPhotos();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function deletePhoto(index) {
+            photos.splice(index, 1);
+            localStorage.setItem('ok_photos', JSON.stringify(photos));
+            renderPhotos();
+        }
+
+        // Initialize App
+        window.onload = function() {
+            lucide.createIcons();
+            renderToilets();
+            renderChecklist();
+            renderExpenses();
+            renderPhotos();
+        };
+    </script>
+</body>
+</html>
